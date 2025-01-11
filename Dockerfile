@@ -3,8 +3,12 @@ FROM node:18-alpine AS frontend-builder
 
 # Set working directory for frontend
 WORKDIR /app/frontend
+
+# Install dependencies first (better layer caching)
 COPY frontend/mini-project/package*.json ./
-RUN npm ci
+RUN npm cache clean --force && \
+    npm install -g npm@latest && \
+    npm ci --legacy-peer-deps
 
 # Copy frontend source
 COPY frontend/mini-project/ ./
@@ -31,7 +35,7 @@ COPY --from=frontend-builder /app/frontend/package*.json /app/frontend/
 
 # Install frontend production dependencies
 WORKDIR /app/frontend
-RUN npm ci --only=production
+RUN npm ci --only-production --legacy-peer-deps
 
 # Set up backend
 WORKDIR /app/backend
