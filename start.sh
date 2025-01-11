@@ -5,7 +5,7 @@ cd /app/backend
 python src/main.py &
 
 # Start the frontend service
-cd /app/frontend
+cd /app/frontend/mini-project
 npm start &
 
 # Wait for any process to exit
