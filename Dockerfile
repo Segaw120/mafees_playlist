@@ -2,7 +2,7 @@
 FROM node:18-alpine AS frontend-builder
 
 # Set working directory for frontend
-WORKDIR /app/frontend
+WORKDIR /app/front
 
 # Install dependencies first (better layer caching)
 COPY frontend/mini-project/package*.json ./
