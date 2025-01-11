@@ -1,6 +1,6 @@
 import redis.asyncio as aioredis
 from loguru import logger
-from config import REDIS_HOST, REDIS_PORT, REDIS_DB
+from config import REDIS_HOST, REDIS_PORT, REDIS_DB, REDIS_PASSWORD
 import json
 from typing import List, Dict, Any
 
@@ -14,6 +14,7 @@ class RedisClient:
             host=REDIS_HOST,
             port=REDIS_PORT,
             db=REDIS_DB,
+            password=REDIS_PASSWORD,
             decode_responses=True
         )
         await self.redis.ping()

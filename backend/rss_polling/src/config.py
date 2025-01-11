@@ -33,6 +33,14 @@ logger.info(f"Environment REDIS_PORT after loading .env: {os.getenv('REDIS_PORT'
 REDIS_HOST = os.getenv('REDIS_HOST', 'localhost')
 REDIS_PORT = int(os.getenv('REDIS_PORT', '6379'))
 REDIS_DB = int(os.getenv('REDIS_DB', '0'))
+REDIS_PASSWORD = os.getenv('REDIS_PASSWORD', None)
+
+# Log Redis configuration
+logger.info(f"Redis Configuration:")
+logger.info(f"Host: {REDIS_HOST}")
+logger.info(f"Port: {REDIS_PORT}")
+logger.info(f"DB: {REDIS_DB}")
+logger.info(f"Password: {'Set' if REDIS_PASSWORD else 'Not Set'}")
 
 # RSS Feed Configuration
 RSS_FEEDS = [
