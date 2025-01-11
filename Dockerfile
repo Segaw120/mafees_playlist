@@ -53,4 +53,4 @@ COPY start.sh /app/
 RUN chmod +x /app/start.sh
 
 WORKDIR /app
-CMD ["/app/start.sh"] 
+CMD ["/app/start.sh"]
