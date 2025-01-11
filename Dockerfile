@@ -1,5 +1,5 @@
 # Use multi-stage build
-FROM node:18-alpine AS frontend-builder
+FROM node:20-alpine AS frontend-builder
 
 # Set working directory for frontend
 WORKDIR /app/frontend
@@ -7,7 +7,7 @@ WORKDIR /app/frontend
 # Install dependencies first (better layer caching)
 COPY frontend/mini-project/package*.json ./
 RUN npm cache clean --force && \
-    npm install -g npm@latest && \
+    npm install -g npm@10.2.4 && \
     npm ci --legacy-peer-deps
 
 # Copy frontend source
@@ -21,7 +21,7 @@ FROM python:3.11-slim
 RUN apt-get update && apt-get install -y \
     curl \
     python3-distutils \
-    && curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
+    && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
     && apt-get install -y nodejs \
     && rm -rf /var/lib/apt/lists/*
 
